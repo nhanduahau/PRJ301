@@ -27,7 +27,7 @@ public class DAO {
     private static final String SEARCHBYNAME = "SELECT [mobileId], [description] ,[price],[mobileName], [quantity], [notSale], [yearOfProduction] FROM [dbo].[tbl_Mobile] WHERE [mobileName] LIKE ?";
     private static final String SEARCHBYPRICE = "SELECT [mobileId], [description] ,[price],[mobileName], [quantity], [notSale], [yearOfProduction] FROM [dbo].[tbl_Mobile]  WHERE [price] >= ? AND [price] <= ?";
 //    private static final String UPDATE = "UPDATE [dbo].[tblAirplanes] SET [destination] = ?, [departureTime] = ?, [isDelay] = ? WHERE [id] LIKE ?";
-//    private static final String DELETE = "DELETE [dbo].[tblAirplanes] WHERE [id] = ?";
+    private static final String DELETE = "DELETE [dbo].[tbl_Mobile] WHERE [mobileId] = ?";
 
     public User checkLogin(String userID, int password) throws SQLException {
         User user = null;
@@ -160,5 +160,29 @@ public class DAO {
             }
         }
         return airList;
+    }
+
+    public boolean delete(String mobileId) throws ClassNotFoundException, SQLException {
+        boolean checkDelete = false;
+        Connection con = null;
+        PreparedStatement ps = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                ps = con.prepareStatement(DELETE);
+                ps.setString(1, mobileId);
+                checkDelete = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return checkDelete;
     }
 }

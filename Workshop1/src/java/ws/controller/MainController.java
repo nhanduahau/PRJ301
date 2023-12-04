@@ -27,6 +27,8 @@ public class MainController extends HttpServlet {
     private static final String SEARCHBYIDORNAME_CONTROLLER = "SearchByIdOrNameController";
     private static final String SEARCHBYPRICE = "SearchByPrice";
     private static final String SEARCHBYPRICE_CONTROLLER = "SearchByPriceController";
+    private static final String DELETE = "Delete";
+    private static final String DELETE_CONTROLLER = "DeleteController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,6 +49,8 @@ public class MainController extends HttpServlet {
                 url = SEARCHBYIDORNAME_CONTROLLER;
             }else if (action.equalsIgnoreCase(SEARCHBYPRICE)) {
                 url = SEARCHBYPRICE_CONTROLLER;
+            }else if (action.equalsIgnoreCase(DELETE)) {
+                url = DELETE_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

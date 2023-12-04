@@ -30,7 +30,7 @@
                 txtMobileName = "";
             }
         %>
-        <h1>User Page</h1>
+        <h1>Staff Page</h1>
         <form action="MainController?action=Logout">
             <input type="submit" value="Logout"/>
         </form>
@@ -89,6 +89,14 @@
 
                     <td>
                         <input type="text" name="notSale" value="<%= c.isNotSale()%>" required=""/>
+                    </td>
+                    <td>
+                        <input type="submit" name="action" value="Update"/>
+                        <input type="hidden" name="mobileId" value="<%= c.getMobileId()%>"/>
+                        <input type="hidden" name="search" value="<%= "SearchByIdOrName"%>"/>
+                    </td>
+                    <td>
+                        <a href="MainController?search=<%="SearchByIdOrName"%>&action=Delete&id=<%=c.getMobileId()%>">Delete</a>
                     </td>
                 </tr>
             </form>
