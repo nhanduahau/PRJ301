@@ -96,7 +96,7 @@
                         <input type="hidden" name="search" value="<%= "SearchByIdOrName"%>"/>
                     </td>
                     <td>
-                        <a href="MainController?search=<%="SearchByIdOrName"%>&action=Delete&id=<%=c.getMobileId()%>">Delete</a>
+                        <a href="MainController?search=<%="SearchByIdOrName"%>&action=Delete&txtMobileId=<%=c.getMobileId()%>">Delete</a>
                     </td>
                 </tr>
             </form>
