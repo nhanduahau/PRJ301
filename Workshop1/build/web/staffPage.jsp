@@ -34,6 +34,7 @@
         <form action="MainController?action=Logout">
             <input type="submit" value="Logout"/>
         </form>
+        <p>Create Mobile? <a href="/Workshop1/createMobile.jsp">Create Mobile</a></p>
         <form action ="MainController">
             <input type ="text" placeholder="Search by ID " name ="txtMobileId" value="<%=txtMobileId%>" />
             <input type ="text" placeholder="Search by Name " name ="txtMobileName" value="<%=txtMobileName%>" />

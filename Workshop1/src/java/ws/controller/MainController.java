@@ -29,6 +29,10 @@ public class MainController extends HttpServlet {
     private static final String SEARCHBYPRICE_CONTROLLER = "SearchByPriceController";
     private static final String DELETE = "Delete";
     private static final String DELETE_CONTROLLER = "DeleteController";
+    private static final String CREATEMOBILE = "CreateMobile";
+    private static final String CREATEMOBILE_CONTROLLER = "CreateMobileController";
+    private static final String UPDATE = "Update";
+    private static final String UPDATE_CONTROLLER = "UpdateController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,12 +49,16 @@ public class MainController extends HttpServlet {
                 url = LOGOUT_CONTROLLER;
             } else if (action.equalsIgnoreCase(LOGOUT)) {
                 url = LOGOUT_CONTROLLER;
-            }else if (action.equalsIgnoreCase(SEARCHBYIDORNAME)) {
+            } else if (action.equalsIgnoreCase(SEARCHBYIDORNAME)) {
                 url = SEARCHBYIDORNAME_CONTROLLER;
-            }else if (action.equalsIgnoreCase(SEARCHBYPRICE)) {
+            } else if (action.equalsIgnoreCase(SEARCHBYPRICE)) {
                 url = SEARCHBYPRICE_CONTROLLER;
-            }else if (action.equalsIgnoreCase(DELETE)) {
+            } else if (action.equalsIgnoreCase(DELETE)) {
                 url = DELETE_CONTROLLER;
+            } else if (action.equalsIgnoreCase(CREATEMOBILE)) {
+                url = CREATEMOBILE_CONTROLLER;
+            } else if (action.equalsIgnoreCase(UPDATE)) {
+                url = UPDATE_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

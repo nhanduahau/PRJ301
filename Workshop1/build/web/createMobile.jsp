@@ -20,7 +20,7 @@
                 return;
             }
 
-            String search = request.getParameter("txtCakeIDSearch");
+            String search = request.getParameter("txtMobileIDSearch");
             if (search == null) {
                 search = "";
             }
@@ -34,24 +34,25 @@
 
             <a href="MainController?action=Logout" class="Logout" style="text-align: right">Logout</a>    
 
-            <h1>Hello <%=loginUser.getFullName()%></h1>
-            <form action="MainController">
-                <button type="submit" name="action" value="Orders">Orders</button>
-                <button type="submit" name="action" value="ManageUsers">Manage Users</button>
-                <button type="submit" name="action" value="ManageCakes">Manage Cakes</button>
-            </form>
         </div>
 
         <h1>Create Mobile</h1>
         <%=result_Updated%>
 
         <form action="MainController" method="POST">
-            ID <input type="text" name="txtCakeID"value=""/> <br>
-            Name<input type="text" name="txtCakeName"value=""/><br>
-            Description<input type="text" name="txtCakeDescription"value=""/><br>
-            Price<input type="text" name="txtCakePrice"value=""/><br>
-            Image<input type="text" name="txtCakeImage"value=""/><br>
-            <button type="Submit" name="action" value="CreateCake">CREATE</button>
+            ID <input type="text" name="txtMobileId"value=""/> <br>
+            Name<input type="text" name="txtMobileName"value=""/><br>
+            Description<input type="text" name="txtMobileDescription"value=""/><br>
+            Price<input type="text" name="txtMobilePrice"value=""/><br>
+            Quantity<input type="text" name="txtQuantity"value=""/><br>
+            YearOfProduction<input type="text" name="txtYearOfProduction"value=""/><br>
+            <label>Not Sale?</label>
+            <input type="radio" id="available" name="txtNotSale" value="true" checked>
+            <label for="available">Yes</label>
+            <input type="radio" id="notAvailable" name="txtNotSale" value="false">
+            <label for="notAvailable">No</label><br>
+
+            <button type="Submit" name="action" value="CreateMobile">CREATE</button>
         </form>
 
     </body>
