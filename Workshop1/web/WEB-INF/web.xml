@@ -28,6 +28,10 @@
         <servlet-name>SearchByIdOrNameController</servlet-name>
         <servlet-class>ws.controller.SearchByIdOrNameController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateMobileController</servlet-name>
+        <servlet-class>ws.controller.CreateMobileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SearchByIdOrNameController</servlet-name>
         <url-pattern>/SearchByIdOrNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateMobileController</servlet-name>
+        <url-pattern>/CreateMobileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
