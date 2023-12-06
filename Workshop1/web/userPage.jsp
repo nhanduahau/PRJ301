@@ -15,7 +15,7 @@
         <title>User Page</title>
     </head>
     <body>
-       <%
+        <%
             User loginUser = (User) session.getAttribute("LOGIN_USER");
             if (loginUser == null || (loginUser.getRole() != 0)) {
                 response.sendRedirect("login.jsp");
@@ -39,15 +39,15 @@
             <input type ="number" placeholder="Search by Max Price " name ="txtMax" value="<%=txtMax%>" />
             <input type ="submit" name ="action" value ="SearchByPrice" />
         </form>
-             <%
-                String error = (String) request.getAttribute("ExNum");
-                if (error == null) {
-                    error = "";
-                }
-            %>
-            
-            <%= error%>
-            
+        <%
+            String error = (String) request.getAttribute("ExNum");
+            if (error == null) {
+                error = "";
+            }
+        %>
+
+        <%= error%>
+
         <%
             List<Mobile> listMobile = (List<Mobile>) request.getAttribute("LIST_MOBILE_BY_PRICE");
             if (listMobile != null) {
@@ -65,8 +65,7 @@
                     <th>Year Of Production</th>
                     <th>Quantity</th>
                     <th>Not Sale</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th>Add to Cart</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,6 +98,12 @@
                     <td>
                         <input type="text" name="notSale" value="<%= c.isNotSale()%>" required=""/>
                     </td>
+                    <td>
+                        <button type="submit" name="action" value="AddMobile">Add Mobile</button>
+                        <input type="hidden" name="txtMobileIDAdd" value="<%=c.getMobileId()%>"/>
+                        <input type="hidden" name="txtQuantityBuy" value="1"/>
+                        <input type="hidden" name="txtPriceBuy" value="<%=c.getPrice()%>">
+                    </td>
                 </tr>
             </form>
             <%}
@@ -108,5 +113,5 @@
         </tbody>
     </table>
 
-    </body>
+</body>
 </html>

@@ -33,6 +33,10 @@ public class MainController extends HttpServlet {
     private static final String CREATEMOBILE_CONTROLLER = "CreateMobileController";
     private static final String UPDATE = "Update";
     private static final String UPDATE_CONTROLLER = "UpdateController";
+    private static final String VIEW_CART = "ViewCart";
+    private static final String ADD_MOBILE = "AddMobile";
+    private static final String REMOVE_MOBILE = "RemoveMobile";
+    private static final String CART_CONTROLLER = "CartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,6 +63,8 @@ public class MainController extends HttpServlet {
                 url = CREATEMOBILE_CONTROLLER;
             } else if (action.equalsIgnoreCase(UPDATE)) {
                 url = UPDATE_CONTROLLER;
+            } else if (action.equalsIgnoreCase(ADD_MOBILE) || action.equalsIgnoreCase(REMOVE_MOBILE) || action.equalsIgnoreCase(VIEW_CART)) {
+                url = CART_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

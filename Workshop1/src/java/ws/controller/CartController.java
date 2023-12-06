@@ -12,39 +12,56 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import ws.dao.DAO;
+import ws.dto.CartObj;
 import ws.dto.Mobile;
 
 /**
  *
  * @author tolyh
  */
-public class SearchByIdOrNameController extends HttpServlet {
+public class CartController extends HttpServlet {
 
-    private static final String ERROR = "staffPage.jsp";
-    private static final String SUCCESS = "staffPage.jsp";
-
+    private static final String CART_PAGE = "cartMobile.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-           
-            String txtMobileId = request.getParameter("txtMobileId");
-            String txtMobileName = request.getParameter("txtMobileName");
-            DAO dao = new DAO();
-            List<Mobile> listMobile = dao.getMobileListByIdOrName(txtMobileId, txtMobileName);
-            if (listMobile.size() > 0) {
-                request.setAttribute("LIST_MOBILE_BY_IDORNAME", listMobile);
-                url = SUCCESS;
-            }
+        String url = CART_PAGE;
 
+        try {
+            String action = request.getParameter("action");
+            HttpSession session = request.getSession();
+            CartObj cart = (CartObj) session.getAttribute("CART");
+            String txtMobileId = request.getParameter("txtMobileIDAdd");
+            DAO dao = new DAO();
+            List<Mobile> listMobile = dao.getMobileListByIdOrName("", "");
+            if (listMobile.size() > 0) {
+                request.setAttribute("LIST_MOBILE", listMobile);
+            }
+            //Check is this parameter is not null
+            if (action.equalsIgnoreCase("AddMobile")) {
+                if (txtMobileId != "") {
+                    if (cart == null) {
+                        cart = new CartObj();
+                    }
+                    cart.addMobile(txtMobileId, 1);
+
+                    session.setAttribute("CART", cart);
+                }
+            } else if (action.equalsIgnoreCase("RemoveMobile")) {
+                if (cart != null) {
+                    cart.removeMobile(txtMobileId);
+                    session.setAttribute("CART", cart);
+                }
+            }
         } catch (Exception e) {
-            log("Error at SearchController: " + e.toString());
+            log("Error at CartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
