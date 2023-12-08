@@ -3,63 +3,65 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package pe.prj301.controllers;
 
-import DAO.AccountDAO;
-import DTO.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import pe.prj301.shopping.Cart;
+import pe.prj301.shopping.DAO;
+import pe.prj301.shopping.Products;
 
 /**
  *
- * @author tolyh
+ * @author NHANTO
  */
-public class UpdateAccountController extends HttpServlet {
+public class CartController extends HttpServlet {
 
-    private static final String SUCCESS = "accountPage.jsp";
-    private static final String ERROR = "accountPage.jsp";
+    private static final String CART_PAGE = "viewCart.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SUCCESS;
+        String url = CART_PAGE;
 
         try {
-            String userName = request.getParameter("userName");
-            String password = request.getParameter("password");
-            String fullName = request.getParameter("fullName");
-            AccountDAO dao = new AccountDAO();
-            List<Account> listAccount = new ArrayList<>();
-            listAccount = dao.getAccountByName(userName);
-
-            if (listAccount.size() > 0) {
-                //Get the first Cake -- also that listCakes contain only 1 cake.
-                Account account = listAccount.get(0);
-
-                //update
-                account.setPassword(password);
-                account.setFullName(fullName);
-                boolean result = dao.UpdateAccount(account);
-
-                if (result == false) {
-                    request.setAttribute("UPDATED_ERROR", "Update not successfully!");
-                }
-            } else {
-                request.setAttribute("UPDATED_ERROR", "Cake not found!!");
-                url = ERROR;
+            String action = request.getParameter("action");
+            HttpSession session = request.getSession();
+            Cart cart = (Cart) session.getAttribute("CART");
+            String txtMobileId = request.getParameter("txtMobileIDAdd");
+            DAO dao = new DAO();
+            List<Products> listMobile = dao.getMobileListByIdOrName("", "");
+            if (listMobile.size() > 0) {
+                request.setAttribute("LIST_MOBILE", listMobile);
             }
+            //Check is this parameter is not null
+            if (action.equalsIgnoreCase("AddMobile")) {
+                if (txtMobileId != "") {
+                    if (cart == null) {
+                        cart = new CartObj();
+                    }
+                    cart.addMobile(txtMobileId, 1);
 
+                    session.setAttribute("CART", cart);
+                }
+            } else if (action.equalsIgnoreCase("RemoveMobile")) {
+                if (cart != null) {
+                    cart.removeMobile(txtMobileId);
+                    session.setAttribute("CART", cart);
+                }
+            }
         } catch (Exception e) {
-            log("Error at UpdateCakeController: " + e.toString());
+            log("Error at CartController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

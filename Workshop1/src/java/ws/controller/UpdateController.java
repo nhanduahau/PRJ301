@@ -22,15 +22,6 @@ import ws.dto.Mobile;
  */
 public class UpdateController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     private static final String SUCCESS = "staffPage.jsp";
     private static final String ERROR = "staffPage.jsp";
 
@@ -53,7 +44,7 @@ public class UpdateController extends HttpServlet {
             }
             DAO dao = new DAO();
             List<Mobile> listMobile = new ArrayList<>();
-            listMobile = dao.getMobileListByIdOrName(txtMobileID,"");
+            listMobile = dao.getMobileListByIdOrName(txtMobileID, "");
             if (listMobile.size() > 0) {
                 //Get the first Cake -- also that listCakes contain only 1 cake.
                 Mobile mobile = listMobile.get(0);

@@ -18,6 +18,12 @@ public class Account {
     public Account() {
     }
 
+    public Account(String userName, String password, String fullName) {
+        this.userName = userName;
+        this.password = password;
+        this.fullName = fullName;
+    }
+
     public Account(String userName, String password, String fullName, float wallet) {
         this.userName = userName;
         this.password = password;

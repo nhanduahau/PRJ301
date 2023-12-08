@@ -23,6 +23,8 @@ public class AccountDAO {
     private static final String LISTALLACCOUNT = "SELECT [userName], [password] ,[fullName],[wallet]FROM [dbo].[Account]";
     private static final String DELETE = "DELETE [dbo].[Account] WHERE [userName] = ?";
     private static final String CREATE = "INSERT INTO [Account] ([userName], [password] ,[fullName],[wallet]) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE [dbo].[Account] SET [password] = ?, [fullName] = ? WHERE [userName] LIKE ?";
+    private static final String SEARCHBYNAME = "SELECT [userName], [password] ,[fullName] FROM [dbo].[Account] WHERE [userName] LIKE ?";
 
     public List<Account> listAllAccount() throws SQLException, ClassNotFoundException {
         List<Account> accountList = new ArrayList<>();
@@ -109,5 +111,69 @@ public class AccountDAO {
             return result;
 
         }
+    }
+
+    public boolean UpdateAccount(Account account) throws SQLException {
+        boolean result = false;
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                ps = con.prepareStatement(UPDATE);
+                ps.setString(1, account.getPassword());
+                ps.setString(2, account.getPassword());
+
+                result = ps.executeUpdate() > 0 ? true : false;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+            return result;
+
+        }
+    }
+
+    public List<Account> getAccountByName(String userName) throws SQLException, ClassNotFoundException {
+        List<Account> accountList = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtil.getConnection();
+            if (con != null) {
+                ps = con.prepareStatement(SEARCHBYNAME);
+                ps.setString(1, '%' + userName + '%');
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    String txtUserName = rs.getString("userName");
+                    String password = rs.getString("password");
+                    String fullName = rs.getString("fullName");
+                    
+                    accountList.add(new Account(txtUserName, password, fullName));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                rs.close();
+            }
+            if (con != null) {
+                rs.close();
+            }
+        }
+        return accountList;
     }
 }

@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Account Page</title>
     </head>
-   <body>
+    <body>
         <%
 
         %>
@@ -68,6 +68,8 @@
                     <td>
                     </td>
                     <td>
+                        <input type="submit" name="action" value="UpdateAccount"/>
+                        <input type="hidden" name="userName" value="<%= c.getUserName()%>"/>
                     </td>
                     <td>
                         <a href="MainController?&action=RemoveAccount&txtUserName=<%=c.getUserName()%>">Delete</a>

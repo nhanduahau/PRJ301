@@ -25,6 +25,8 @@ public class MainController extends HttpServlet {
     private static final String REMOVEACCOUNT_CONTROLLER = "RemoveAccountController";
     private static final String CREATEACCOUNT = "CreateAccount";
     private static final String CREATEACCOUNT_CONTROLLER = "CreateAccountController";
+    private static final String UPDATEACCOUNT = "UpdateAccount";
+    private static final String UPDATEACCOUNT_CONTROLLER = "UpdateAccountController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,6 +43,8 @@ public class MainController extends HttpServlet {
                 url = REMOVEACCOUNT_CONTROLLER;
             } else if (action.equalsIgnoreCase(CREATEACCOUNT)) {
                 url = CREATEACCOUNT_CONTROLLER;
+            } else if (action.equalsIgnoreCase(UPDATEACCOUNT)) {
+                url = UPDATEACCOUNT_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
