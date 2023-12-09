@@ -28,6 +28,10 @@ public class MainController extends HttpServlet {
     private static final String UPDATEACCOUNT = "UpdateAccount";
     private static final String UPDATEACCOUNT_CONTROLLER = "UpdateAccountController";
 
+    private static final String UPDATE_DEPOSIT = "UpdateDeposit";
+    private static final String UPDATE_WITHDRAW = "UpdateWithdraw";
+    private static final String UPDATE_WALLET_CONTROLLER = "UpdateWalletController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -45,6 +49,9 @@ public class MainController extends HttpServlet {
                 url = CREATEACCOUNT_CONTROLLER;
             } else if (action.equalsIgnoreCase(UPDATEACCOUNT)) {
                 url = UPDATEACCOUNT_CONTROLLER;
+            } else if (action.equalsIgnoreCase(UPDATE_DEPOSIT) || action.equalsIgnoreCase(UPDATE_WITHDRAW)) {
+                url = UPDATE_WALLET_CONTROLLER;
+
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

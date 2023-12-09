@@ -9,9 +9,33 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Deposit Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+
+        <%
+            String username = (String) request.getParameter("txtUsername");
+            if (username != null) {
+                String error = (String)request.getAttribute("ERROR");
+                if (error == null) {
+                    error = "";
+                }
+        %>
+        <p style="color: red"><%=error%></p> <br>
+        
+        <form action="MainController" method="POST">
+            <input type="text" name="" value="<%=username%>" disabled="disabled"> 
+
+            <input type="hidden" name="txtUsername" value="<%=username%>">
+            <input type="text" name="txtNewValue" value="">
+            <button type="submit" name="action" value="UpdateWithdraw">Add Deposit</button>
+
+        </form>
+        <%
+        } else {
+
+        %>
+        <p>Please choose customer!</p>
+        <%}%>
     </body>
 </html>

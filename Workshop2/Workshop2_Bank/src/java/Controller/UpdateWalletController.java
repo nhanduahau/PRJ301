@@ -5,8 +5,12 @@
  */
 package Controller;
 
+import DAO.AccountDAO;
+import DTO.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,33 +18,52 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author tolyh
+ * @author phann
  */
-public class WithdrawController extends HttpServlet {
+public class UpdateWalletController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String SUCCESS = "accountPage.jsp";
+    private static final String ERROR = "withdrawPage.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet WithdrawController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet WithdrawController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = SUCCESS;
+        try {
+            String action = request.getParameter("action");
+            String txtUsername = request.getParameter("txtUsername");
+            String txtNewValue = request.getParameter("txtNewValue");
+
+            float newValue = Float.parseFloat(txtNewValue);
+
+            AccountDAO dao = new AccountDAO();
+            List<Account> listAccount = new ArrayList<>();
+            listAccount = dao.getAccountByName(txtUsername);
+
+            if (listAccount.size() > 0) {
+                Account currentAccount = listAccount.get(0);
+                float currentWallet = currentAccount.getWallet();
+
+                if (action.equalsIgnoreCase("UpdateDeposit")) {
+                    currentAccount.setWallet(currentWallet + newValue);
+                    dao.UpdateWallet(currentAccount);
+
+                } else if (action.equalsIgnoreCase("UpdateWithdraw")) {
+                    if (currentWallet >= newValue) {
+                        currentAccount.setWallet(currentWallet - newValue);
+                        dao.UpdateWallet(currentAccount);
+                    } else {
+                        url = ERROR;
+                        request.setAttribute("ERROR", "CURRENT WALLET IS NOT ENOUGH");
+                    }
+                }
+            } else {
+                request.setAttribute("ERROR", "CUSTOMER NOT FOUND");
+            }
+        } catch (Exception e) {
+            log("Error at UpdateWalletController: " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

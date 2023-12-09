@@ -49,7 +49,7 @@
                     for (Account c : listAccount) {
 
                 %>
-            <form action="MainController">
+            <form action="MainController" method="POST">
                 <tr>
                     <td><%= count++%></td>
                     <td><%= c.getUserName()%></td>
@@ -61,11 +61,13 @@
                     </td>
 
                     <td>
-                        <input type="text" name="wallet" value="<%= c.getWallet()%>" required=""/>
+                       <%=c.getWallet()%>
                     </td>
                     <td>
+                        <a href="/Workshop2_Bank/depositPage.jsp?txtUsername=<%=c.getUserName()%>">sdasdasd</a>
                     </td>
                     <td>
+                        <a href="/Workshop2_Bank/withdrawPage.jsp?txtUsername=<%=c.getUserName()%>">wewewe</a>
                     </td>
                     <td>
                         <input type="submit" name="action" value="UpdateAccount"/>
@@ -74,6 +76,7 @@
                     <td>
                         <a href="MainController?&action=RemoveAccount&txtUserName=<%=c.getUserName()%>">Delete</a>
                     </td>
+                     
                 </tr>
             </form>
             <%}

@@ -28,6 +28,10 @@
         <servlet-name>WithdrawController</servlet-name>
         <servlet-class>Controller.WithdrawController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateWalletController</servlet-name>
+        <servlet-class>Controller.UpdateWalletController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>WithdrawController</servlet-name>
         <url-pattern>/WithdrawController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateWalletController</servlet-name>
+        <url-pattern>/UpdateWalletController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
