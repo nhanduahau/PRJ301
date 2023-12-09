@@ -63,7 +63,7 @@
                     </td>
                     <td>
                         <input type="submit" name="action" value="Add"/>
-                        <input type="hidden" name="mobileId" value="<%= c.getProductID()%>"/>
+                        <input type="hidden" name="txtProductIDAdd" value="<%= c.getProductID()%>"/>
                         <input type="hidden" name="search" value="<%= "SearchByIdOrName"%>"/>
                     </td>
 

@@ -22,6 +22,9 @@ public class MainController extends HttpServlet {
     private static final String SHOPPING_PAGE = "shopping.jsp";
     private static final String SEARCH = "Search";
     private static final String SEARCH_CONTROLLER = "SearchController";
+    
+    private static final String ADD = "Add";
+    private static final String CART_CONTROLLER = "CartController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,6 +37,8 @@ public class MainController extends HttpServlet {
             }
             if (action.equalsIgnoreCase(SEARCH)) {
                 url = SEARCH_CONTROLLER;
+            } else if (action.equalsIgnoreCase(ADD)) {
+                url = CART_CONTROLLER;
             }
 //            your code here
         } catch (Exception e) {

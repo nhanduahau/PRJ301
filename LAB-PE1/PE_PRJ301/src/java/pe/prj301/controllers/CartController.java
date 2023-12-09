@@ -34,14 +34,15 @@ public class CartController extends HttpServlet {
             String action = request.getParameter("action");
             HttpSession session = request.getSession();
             Cart cart = (Cart) session.getAttribute("CART");
-            String txtMobileId = request.getParameter("txtMobileIDAdd");
+            String txtProductIDAdd = request.getParameter("txtProductIDAdd");
             DAO dao = new DAO();
-            List<Products> listMobile = dao.getMobileListByIdOrName("", "");
+            //Kiem tra xem ProductID co trong DB hay khong
+            List<Products> listProducts = dao.getMobileListByIdOrName("", "");
             if (listMobile.size() > 0) {
                 request.setAttribute("LIST_MOBILE", listMobile);
             }
             //Check is this parameter is not null
-            if (action.equalsIgnoreCase("AddMobile")) {
+            if (action.equalsIgnoreCase("Add")) {
                 if (txtMobileId != "") {
                     if (cart == null) {
                         cart = new CartObj();
@@ -50,12 +51,13 @@ public class CartController extends HttpServlet {
 
                     session.setAttribute("CART", cart);
                 }
-            } else if (action.equalsIgnoreCase("RemoveMobile")) {
-                if (cart != null) {
-                    cart.removeMobile(txtMobileId);
-                    session.setAttribute("CART", cart);
-                }
             }
+//            } else if (action.equalsIgnoreCase("Remove")) {
+//                if (cart != null) {
+//                    cart.removeMobile(txtMobileId);
+//                    session.setAttribute("CART", cart);
+//                }
+//            }
         } catch (Exception e) {
             log("Error at CartController: " + e.toString());
         } finally {
