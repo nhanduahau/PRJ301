@@ -64,10 +64,10 @@
                        <%=c.getWallet()%>
                     </td>
                     <td>
-                        <a href="/Workshop2_Bank/depositPage.jsp?txtUsername=<%=c.getUserName()%>">sdasdasd</a>
+                        <a href="/Workshop2_Bank/depositPage.jsp?txtUsername=<%=c.getUserName()%>">Deposit</a>
                     </td>
                     <td>
-                        <a href="/Workshop2_Bank/withdrawPage.jsp?txtUsername=<%=c.getUserName()%>">wewewe</a>
+                        <a href="/Workshop2_Bank/withdrawPage.jsp?txtUsername=<%=c.getUserName()%>">Withdraw</a>
                     </td>
                     <td>
                         <input type="submit" name="action" value="UpdateAccount"/>
