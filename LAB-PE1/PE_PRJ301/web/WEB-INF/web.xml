@@ -5,8 +5,8 @@
         <servlet-class>pe.prj301.controllers.MainController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchController</servlet-name>
-        <servlet-class>pe.prj301.controllers.SearchController</servlet-class>
+        <servlet-name>SearchAllController</servlet-name>
+        <servlet-class>pe.prj301.controllers.SearchAllController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
@@ -17,8 +17,8 @@
         <url-pattern>/MainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SearchController</servlet-name>
-        <url-pattern>/SearchController</url-pattern>
+        <servlet-name>SearchAllController</servlet-name>
+        <url-pattern>/SearchAllController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>

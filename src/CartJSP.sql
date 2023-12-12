@@ -1,36 +1,30 @@
-<%-- 
-    Document   : viewCart
-    Created on : au 28, 2023, 9:07:46 PM
-    Author     : hd
---%>
-
-<%@page import="java.util.Map"%>
-<%@page import="pe.prj301.shopping.Cart"%>
-<%@page import="java.util.List"%>
-<%@page import="pe.prj301.shopping.Products"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Cart Page</title>
-    </head>
-    <body>
-        <h1>Your Shopping cart</h1>
-        <!--your code here--> 
-    <body>
+   <body>
         <%
+            User loginUser = (User) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || (loginUser.getRole() != 0)) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
             String cartEmpty = (String) request.getAttribute("CART_NULL");
             if (cartEmpty == null) {
                 cartEmpty = "";
             }
         %>
+
+        <a href="MainController?action=Logout" class="Logout">Logout</a>    
+
+        <form action="MainController" method="POST">
+            <button type="submit" name="action" value="SearchByPrice">Mobile Page</button>
+        </form>
+
+
+
         <%
-            List<Products> listProducts = (List<Products>) request.getAttribute("LIST_MOBILE");
-            Cart cart = (Cart) session.getAttribute("CART");
-            if (listProducts != null && cart != null) {
+            List<Mobile> listMobile = (List<Mobile>) request.getAttribute("LIST_MOBILE");
+            CartObj cart = (CartObj) session.getAttribute("CART");
+            if (listMobile != null && cart != null) {
                 Map<String, Integer> listOrders = cart.getItems();
-                if (listProducts.size() > 0 && listOrders.size() > 0) {
+                if (listMobile.size() > 0 && listOrders.size() > 0) {
                     float totalCart = 0;
 
 
@@ -50,17 +44,17 @@
             </thead>
             <tbody>
                 <%                    for (String key : listOrders.keySet()) {
-                        for (Products products : listProducts) {
-                            if (products.getProductID().equals(key)) {
-                                float total = products.getPrice() * listOrders.get(key);
+                        for (Mobile mobile : listMobile) {
+                            if (mobile.getMobileId().equals(key)) {
+                                float total = mobile.getPrice() * listOrders.get(key);
                                 totalCart += total;
                 %>
             <form action="MainController" method="POST">
                 <tr>
                     <td><%=key%></td>
-                    <td><%=products.getProductName()%></td>
-                    <td><%=products.getDescription()%></td>
-                    <td><%=products.getPrice()%></td>
+                    <td><%=mobile.getMobileName()%></td>
+                    <td><%=mobile.getDescription()%></td>
+                    <td><%=mobile.getPrice()%></td>
                     <td>                        
                         <input type="text" name="txtQuantityBuy" value="<%=listOrders.get(key)%>"/>
 
@@ -73,8 +67,8 @@
                     </td>
                 </tr>
 
-                <input type="hidden" name="txtProductIDAdd" value="<%=products.getMobileId()%>"/>
-                <input type="hidden" name="txtPriceBuy" value="<%=products.getPrice()%>">
+                <input type="hidden" name="txtMobileIDAdd" value="<%=mobile.getMobileId()%>"/>
+                <input type="hidden" name="txtPriceBuy" value="<%=mobile.getPrice()%>">
 
             </form>
             <%
@@ -102,5 +96,3 @@
         }
     %>
 </body>
-</body>
-</html>

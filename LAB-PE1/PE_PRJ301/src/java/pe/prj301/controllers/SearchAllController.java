@@ -19,20 +19,22 @@ import pe.prj301.shopping.Products;
  *
  * @author tolyh
  */
-public class SearchController extends HttpServlet {
+public class SearchAllController extends HttpServlet {
 
     private static final String ERROR = "shopping.jsp";
     private static final String SUCCESS = "shopping.jsp";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+
             DAO dao = new DAO();
-            List<Products> listProduct = dao.getAllProduct();
-            if (listProduct.size() > 0) {
-                request.setAttribute("LIST_ALL_PRODUCTS", listProduct);
+            List<Products> listProducts = dao.getAllProduct();
+            if (listProducts.size() > 0) {
+                request.setAttribute("LIST_ALL_PRODUCT", listProducts);
                 url = SUCCESS;
             }
 

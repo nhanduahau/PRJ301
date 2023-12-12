@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import pe.prj301.utils.DBUtils;
-import pe.prj301.shopping.Products;
 
 /**
  *
@@ -21,7 +20,6 @@ import pe.prj301.shopping.Products;
 public class DAO {
 
     private static final String SEARCHALL = "SELECT [productID], [productName] ,[description],[price] FROM [dbo].[tblProducts] WHERE [status] = 1";
-    private static final String SEARCH_PRODUCT = "SELECT [productID], [productName] ,[description],[price] FROM [dbo].[tblProducts] WHERE [status] = 1 AND [productID] LIKE ?";
 
     public List<Products> getAllProduct() throws SQLException, ClassNotFoundException {
         List<Products> productList = new ArrayList<>();
@@ -34,45 +32,12 @@ public class DAO {
                 ps = con.prepareStatement(SEARCHALL);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    String ProductID = rs.getString("productID");
-                    String ProductName = rs.getString("productName");
-                    String Description = rs.getString("description");
+                    String productID = rs.getString("productID");
+                    String productName = rs.getString("productName");
+                    String description = rs.getString("description");
                     float price = rs.getFloat("price");
-                    productList.add(new Products(ProductID, ProductName, Description, price));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ps != null) {
-                rs.close();
-            }
-            if (con != null) {
-                rs.close();
-            }
-        }
-        return productList;
-    }
-    
-    public List<Products> getProduct(String productID) throws SQLException, ClassNotFoundException {
-        List<Products> productList = new ArrayList<>();
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            con = DBUtils.getConnection();
-            if (con != null) {
-                ps = con.prepareStatement(SEARCHALL);
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    String ProductID = rs.getString("productID");
-                    String ProductName = rs.getString("productName");
-                    String Description = rs.getString("description");
-                    float price = rs.getFloat("price");
-                    productList.add(new Products(ProductID, ProductName, Description, price));
+
+                    productList.add(new Products(productID, productName, description, price));
                 }
             }
         } catch (Exception e) {
@@ -91,3 +56,5 @@ public class DAO {
         return productList;
     }
 }
+//10h20 - 10h45
+//12h55 - 

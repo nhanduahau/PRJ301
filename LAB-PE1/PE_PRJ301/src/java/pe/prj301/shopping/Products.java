@@ -10,6 +10,7 @@ package pe.prj301.shopping;
  * @author hd
  */
 public class Products {
+
     private String productID;
     private String productName;
     private String description;
@@ -17,6 +18,13 @@ public class Products {
     private boolean status;
 
     public Products() {
+    }
+
+    public Products(String productID, String productName, String description, float price) {
+        this.productID = productID;
+        this.productName = productName;
+        this.description = description;
+        this.price = price;
     }
 
     public Products(String productID, String productName, String description, float price, boolean status) {
@@ -67,13 +75,4 @@ public class Products {
         this.status = status;
     }
 
-    public Products(String productID, String productName, String description, float price) {
-        this.productID = productID;
-        this.productName = productName;
-        this.description = description;
-        this.price = price;
-    }
-    
-    
-    
 }

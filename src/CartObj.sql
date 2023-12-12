@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package pe.prj301.shopping;
-
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- *
- * @author hd
- */
-public class Cart {
-
+public class CartObj {
+    
     private Map<String, Integer> items;
 
-    public Cart() {
+    public CartObj() {
     }
 
     public Map<String, Integer> getItems() {
         return items;
     }
 
-    public void addProdcut(String key, int quantity) {
+    public void addMobile(String key, int quantity) {
 
         if (this.items == null) {
             this.items = new HashMap<>();
@@ -33,7 +19,7 @@ public class Cart {
 
     }
 
-    public void removeProduct(String key) {
+    public void removeMobile(String key) {
         if (this.items != null) {
             if (this.items.containsKey(key)) {
                 this.items.remove(key);

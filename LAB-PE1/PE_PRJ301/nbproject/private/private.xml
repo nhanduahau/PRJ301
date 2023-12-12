@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/src/java/pe/prj301/controllers/MainController.java</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/web/viewCart.jsp</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/src/java/pe/prj301/controllers/SearchAllController.java</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/src/java/pe/prj301/shopping/Cart.java</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/src/java/pe/prj301/controllers/CartController.java</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/web/shopping.jsp</file>
+            <file>file:/F:/FPT/PRJ301/LAB-PE1/PE_PRJ301/src/java/pe/prj301/shopping/DAO.java</file>
+        </group>
     </open-files>
 </project-private>

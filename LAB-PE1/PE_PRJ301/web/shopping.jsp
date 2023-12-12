@@ -4,8 +4,8 @@
     Author     : Hoadnt
 --%>
 
-<%@page import="java.util.List"%>
 <%@page import="pe.prj301.shopping.Products"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,14 +18,12 @@
         <!--your code here-->
         <%
 
-
         %>
 
-        <!--        <p>Create Mobile? <a href="/Workshop1/createMobile.jsp">Create Mobile</a></p>-->
         <form action ="MainController">
-            <input type ="submit" name ="action" value ="Search" />
+            <input type ="submit" name ="action" value ="SearchAll" />
         </form>
-        <%            List<Products> listProduct = (List<Products>) request.getAttribute("LIST_ALL_PRODUCTS");
+        <%            List<Products> listProduct = (List<Products>) request.getAttribute("LIST_ALL_PRODUCT");
             if (listProduct != null) {
                 if (listProduct.size() > 0) {
         %>
@@ -61,12 +59,7 @@
                     <td>
                         <input type="text" name="price" value="<%= c.getPrice()%>" required=""/>
                     </td>
-                    <td>
-                        <input type="submit" name="action" value="Add"/>
-                        <input type="hidden" name="txtProductIDAdd" value="<%= c.getProductID()%>"/>
-                        <input type="hidden" name="search" value="<%= "SearchByIdOrName"%>"/>
-                    </td>
-
+                    <td></td>
                 </tr>
             </form>
             <%}

@@ -20,11 +20,8 @@ public class MainController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String SHOPPING_PAGE = "shopping.jsp";
-    private static final String SEARCH = "Search";
-    private static final String SEARCH_CONTROLLER = "SearchController";
-    
-    private static final String ADD = "Add";
-    private static final String CART_CONTROLLER = "CartController";
+    private static final String SEARCHALL = "SearchAll";
+    private static final String SEARCHALL_CONTROLLER = "SearchAllController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,13 +31,10 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = SHOPPING_PAGE;
+            } //            your code here
+            else if (action.equalsIgnoreCase(SEARCHALL)) {
+                url = SEARCHALL_CONTROLLER;
             }
-            if (action.equalsIgnoreCase(SEARCH)) {
-                url = SEARCH_CONTROLLER;
-            } else if (action.equalsIgnoreCase(ADD)) {
-                url = CART_CONTROLLER;
-            }
-//            your code here
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
