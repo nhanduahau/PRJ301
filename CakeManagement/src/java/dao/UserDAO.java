@@ -158,14 +158,15 @@ public class UserDAO {
         }
     }
 
-    public boolean Delete(String userID) throws SQLException {
+  
+      public boolean Delete(String userID) throws SQLException {
         boolean result = false;
         Connection con = null;
         PreparedStatement ps = null;
 
         try {
             con = DBUtils.getConnection();
-            if (con != null) {
+            if (con != null) {               
                 ps = con.prepareStatement(DELETE_USER);
                 ps.setString(1, userID);
 

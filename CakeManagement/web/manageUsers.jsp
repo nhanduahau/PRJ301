@@ -94,11 +94,11 @@
                     <td>
                         <input type="submit" name="action" value="UpdateUser"/>
                         <input type="hidden" name="txtUserID" value="<%=user.getUserID()%>"/>
-                        <input type="hidden" name="txtFullNameSearch" value="<%=search%>"/>
+                        <input type="hidden" name="txtUserIDSearch" value="<%=search%>"/>
                     </td>
             </form>
             <td>
-                <a href="MainController?txtFullNameSearch=<%=search%>&action=DeleteUser&txtUserID=<%=user.getUserID()%>">Delete</a>
+                <a href="MainController?txtUserIDSearch=<%=search%>&action=DeleteUser&txtUserID=<%=user.getUserID()%>">Delete</a>
             </td>
         </tr>
         <% }
