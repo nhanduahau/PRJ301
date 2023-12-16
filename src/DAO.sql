@@ -1,6 +1,6 @@
 public class DAO {
 
-    private static final String LOGIN = "SELECT userId, fullName, role FROM tbl_User WHERE userId = ? AND password= ?";
+    private static final String LOGIN = "SELECT userId, fullName, role FROM tbl_User WHERE userId LIKE ? AND password LIKE ?";
     private static final String SEARCHBYIDORNAME = "SELECT [mobileId], [description] ,[price],[mobileName], [quantity], [notSale], [yearOfProduction] FROM [dbo].[tbl_Mobile] WHERE [mobileId] LIKE ? OR [mobileName] LIKE ?";
     private static final String SEARCHBYID = "SELECT [mobileId], [description] ,[price],[mobileName], [quantity], [notSale], [yearOfProduction] FROM [dbo].[tbl_Mobile] WHERE [mobileId] LIKE ?";
     private static final String SEARCHBYNAME = "SELECT [mobileId], [description] ,[price],[mobileName], [quantity], [notSale], [yearOfProduction] FROM [dbo].[tbl_Mobile] WHERE [mobileName] LIKE ?";
@@ -34,10 +34,10 @@ public class DAO {
                 rs.close();
             }
             if (ps != null) {
-                rs.close();
+                ps.close();
             }
             if (con != null) {
-                rs.close();
+                con.close();
             }
         }
         return user;
@@ -83,10 +83,10 @@ public class DAO {
                 rs.close();
             }
             if (ps != null) {
-                rs.close();
+                ps.close();
             }
             if (con != null) {
-                rs.close();
+                con.close();
             }
         }
         return airList;
@@ -133,10 +133,10 @@ public class DAO {
                 rs.close();
             }
             if (ps != null) {
-                rs.close();
+                ps.close();
             }
             if (con != null) {
-                rs.close();
+                con.close();
             }
         }
         return airList;

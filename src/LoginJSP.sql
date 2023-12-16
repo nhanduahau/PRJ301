@@ -1,4 +1,4 @@
- </head>
+ 
     <body>
               <form action="MainController" method="POST">
             UserID <input name="id" /> 
